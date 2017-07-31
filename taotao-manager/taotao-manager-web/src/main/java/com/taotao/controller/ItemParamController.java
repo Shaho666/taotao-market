@@ -18,10 +18,17 @@ public class ItemParamController {
 	@Autowired
 	private ItemParamService itemParamService;
 	
+	/**
+	 * liubaichuan
+	 * @param page
+	 * @param rows
+	 * @return
+	 */
 	@RequestMapping("/list")
 	@ResponseBody
 	public EasyUIDataGridResult getItemList(Integer page, Integer rows) {
-		EasyUIDataGridResult result = itemParamService.getItemParamList(page, rows);
+		//EasyUIDataGridResult result = itemParamService.getItemParamList(page, rows);
+		EasyUIDataGridResult result = itemParamService.getItemParamVOList(page, rows);
 		return result;
 	}
 	
@@ -45,10 +52,29 @@ public class ItemParamController {
 		TaotaoResult result = itemParamService.insertItemParam(cid, paramData);
 		return result;
 	}
+	/**
+	 * xuezhendong
+	 * @param ids
+	 * @return
+	 */
 	@RequestMapping("delete")
 	@ResponseBody
 	public TaotaoResult Deleteitemparam(String ids){
 		String[] array=ids.split(",");
 		return itemParamService.Deleteitemparam(array);
+	}
+	/**
+	 * liubaichuan
+	 * @param eid
+	 * @param paramData
+	 * @return
+	 */
+	@RequestMapping(value = "/update/{eid}", method = RequestMethod.POST)
+	@ResponseBody
+	public TaotaoResult updateItemParam(@PathVariable Long eid, String paramData) {
+		System.err.println(eid);
+		System.err.println(paramData);
+		TaotaoResult result = itemParamService.updateItemParam(eid, paramData);
+		return result;
 	}
 }

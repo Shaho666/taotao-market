@@ -10,6 +10,24 @@
   <resultMap id="ResultMapWithBLOBs" type="com.taotao.pojo.TbItemParam" extends="BaseResultMap" >
     <result column="param_data" property="paramData" jdbcType="LONGVARCHAR" />
   </resultMap>
+  
+  <resultMap id="tbItemParamCategoryVOResultMap" type="com.taotao.pojo.TbItemParamCategoryVO">
+		<id column="item_param_id" property="id" />
+		<result column="item_cat_id" property="itemCatId" />
+		<result column="param_data" property="paramData" />
+		<result column="created" property="created" />
+		<result column="updated" property="updated" />
+		<result column="name" property="itemCatName" />
+	</resultMap>
+
+	<select id="list" resultMap="tbItemParamCategoryVOResultMap">
+		select tb_item_param.id
+		item_param_id, tb_item_param.item_cat_id, tb_item_param.param_data,
+		tb_item_param.created, tb_item_param.updated, tb_item_cat.name
+		from tb_item_param, tb_item_cat
+		where tb_item_param.item_cat_id = tb_item_cat.id
+	</select>
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

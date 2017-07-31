@@ -13,6 +13,7 @@ import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.mapper.TbItemParamMapper;
 import com.taotao.pojo.TbItemParam;
+import com.taotao.pojo.TbItemParamCategoryVO;
 import com.taotao.pojo.TbItemParamExample;
 import com.taotao.pojo.TbItemParamExample.Criteria;
 import com.taotao.service.ItemParamService;
@@ -90,5 +91,31 @@ public class ItemParamServiceImpl implements ItemParamService {
 			op.setStatus(500);
 		}
 		return op;
+	}
+	@Override
+	public EasyUIDataGridResult getItemParamVOList(int page, int rows) {
+		PageHelper.startPage(page, rows);
+
+		TbItemParamExample example = new TbItemParamExample();
+		List<TbItemParamCategoryVO> list = itemParamMapper.list();
+
+		PageInfo<TbItemParamCategoryVO> pageInfo = new PageInfo<TbItemParamCategoryVO>(list);
+
+		EasyUIDataGridResult result = new EasyUIDataGridResult();
+		result.setRows(list);
+		result.setTotal(pageInfo.getTotal());
+
+		return result;
+	}
+
+	@Override
+	public TaotaoResult updateItemParam(Long eid, String paramData) {
+
+		TbItemParam itemParam = new TbItemParam();
+		itemParam.setId(eid);
+		itemParam.setParamData(paramData);
+		itemParam.setUpdated(new Date());
+		itemParamMapper.updateByPrimaryKeySelective(itemParam);
+		return TaotaoResult.ok();
 	}
 }

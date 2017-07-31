@@ -1,6 +1,7 @@
 package com.taotao.mapper;
 
 import com.taotao.pojo.TbItemParam;
+import com.taotao.pojo.TbItemParamCategoryVO;
 import com.taotao.pojo.TbItemParamExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
@@ -33,4 +34,10 @@ public interface TbItemParamMapper {
     int updateByPrimaryKeyWithBLOBs(TbItemParam record);
 
     int updateByPrimaryKey(TbItemParam record);
+    /**
+     * （分页）查询全部itemParam并附带商品类目种类信息
+     * liubaichuan添加，2017-07-30
+     * @return
+     */
+    List<TbItemParamCategoryVO> list();
 }
