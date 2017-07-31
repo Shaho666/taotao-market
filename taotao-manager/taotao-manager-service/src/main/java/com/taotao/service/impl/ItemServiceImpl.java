@@ -177,11 +177,12 @@ public class ItemServiceImpl implements ItemService {
 		itemDescMapper.updateByPrimaryKeySelective(desc);
 		TbItemParamItem tParamItem = new TbItemParamItem();
 		TbItemParamItem item = findbyitemid(po.getId());
-		tParamItem.setId(item.getId());
-		tParamItem.setUpdated(new Date());
-		tParamItem.setParamData(itemparam);
-		itemParamItemMapper.updateByPrimaryKeySelective(tParamItem);
-
+		if (item != null) {
+			tParamItem.setId(item.getId());
+			tParamItem.setUpdated(new Date());
+			tParamItem.setParamData(itemparam);
+			itemParamItemMapper.updateByPrimaryKeySelective(tParamItem);
+		}
 		TaotaoResult op = new TaotaoResult();
 		if (x > 0) {
 			op.setStatus(200);
@@ -201,7 +202,11 @@ public class ItemServiceImpl implements ItemService {
 		com.taotao.pojo.TbItemParamItemExample.Criteria c = ex.createCriteria();
 		c.andItemIdEqualTo(id);
 		List<TbItemParamItem> item = itemParamItemMapper.selectByExampleWithBLOBs(ex);
-		return item.get(0);
+		TbItemParamItem re = null;
+		if (item != null && item.size() > 0) {
+			re = item.get(0);
+		}
+		return re;
 	}
 
 	/**
