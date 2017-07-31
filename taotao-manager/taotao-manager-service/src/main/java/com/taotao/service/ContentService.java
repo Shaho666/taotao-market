@@ -1,0 +1,16 @@
+package com.taotao.service;
+
+import com.taotao.common.pojo.EasyUIDataGridResult;
+import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.pojo.TbContent;
+
+public interface ContentService {
+
+	TaotaoResult insertContent(TbContent content);
+	
+	EasyUIDataGridResult getContentList(int page, int rows);
+	
+	TaotaoResult deleteContent(String[] ids);
+
+	TaotaoResult contentEdit(TbContent content);
+}
