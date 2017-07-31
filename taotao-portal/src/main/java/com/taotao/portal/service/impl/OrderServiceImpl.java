@@ -15,12 +15,6 @@ import com.taotao.portal.service.OrderService;
 
 /**
  * 订单管理
- * <p>Title: OrderServiceImpl</p>
- * <p>Description: </p>
- * <p>Company: www.itcast.com</p> 
- * @author	入云龙
- * @date	2015年8月27日下午4:31:15
- * @version 1.0
  */
 @Service
 public class OrderServiceImpl implements OrderService {

@@ -6,15 +6,7 @@ import com.taotao.order.dao.JedisClient;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-/**
- * redis单机版客户端
- * <p>Title: JedisClientPool</p>
- * <p>Description: </p>
- * <p>Company: www.itcast.com</p> 
- * @author	入云龙
- * @date	2015年8月21日下午3:01:34
- * @version 1.0
- */
+
 public class JedisClientPool implements JedisClient{
 	
 	@Autowired

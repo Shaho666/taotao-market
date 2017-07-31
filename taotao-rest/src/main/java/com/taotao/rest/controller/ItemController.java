@@ -15,12 +15,6 @@ import com.taotao.rest.service.ItemService;
 
 /**
  * 商品信息管理
- * <p>Title: ItemController</p>
- * <p>Description: </p>
- * <p>Company: www.itcast.com</p> 
- * @author	入云龙
- * @date	2015年8月24日上午10:32:04
- * @version 1.0
  */
 @Controller
 @RequestMapping("/item")
