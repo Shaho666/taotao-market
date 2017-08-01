@@ -244,12 +244,15 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	// 下架商品
-	public TaotaoResult instock(Long ids) {
+	public TaotaoResult instock(List<Long> ids) {
 		TaotaoResult result = new TaotaoResult();
 		TbItem item = new TbItem();
 		item.setStatus(new Byte("2"));
-		item.setId(ids);
-		int x = itemMapper.updateByPrimaryKeySelective(item);
+		TbItemExample ex=new TbItemExample();
+		Criteria c=ex.createCriteria();
+		c.andIdIn(ids);
+		int x=itemMapper.updateByExampleSelective(item, ex);
+
 		if (x > 0) {
 			result.setStatus(200);
 		} else {
@@ -258,12 +261,15 @@ public class ItemServiceImpl implements ItemService {
 		return result;
 	}
 
-	public TaotaoResult reshelf(Long ids) {
+	public TaotaoResult reshelf(List<Long> ids) {
 		TaotaoResult result = new TaotaoResult();
 		TbItem item = new TbItem();
 		item.setStatus(new Byte("1"));
-		item.setId(ids);
-		int x = itemMapper.updateByPrimaryKeySelective(item);
+		TbItemExample ex=new TbItemExample();
+		Criteria c=ex.createCriteria();
+		c.andIdIn(ids);
+		int x=itemMapper.updateByExampleSelective(item, ex);
+
 		if (x > 0) {
 			result.setStatus(200);
 		} else {

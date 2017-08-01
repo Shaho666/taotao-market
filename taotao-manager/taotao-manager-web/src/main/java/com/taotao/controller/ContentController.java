@@ -49,6 +49,10 @@ public class ContentController {
 	@ResponseBody
 	public TaotaoResult deleteContent(String ids){
 		String[] array=ids.split(",");
+		for (String string : array) {
+			HttpClientUtil.doGet(REST_BASE_URL + REST_COTENT_SYNC_URL +Long.parseLong(string));
+		}
+
 		return contentService.deleteContent(array);
 	}
 

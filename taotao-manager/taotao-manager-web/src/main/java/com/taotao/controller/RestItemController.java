@@ -1,8 +1,12 @@
 package com.taotao.controller;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.service.ContentService;
@@ -71,18 +75,18 @@ public class RestItemController {
 		String[] array=ids.split(",");
 		return tbitemser.delete(array);
 	}
-	//下架商品
-	@RequestMapping("item/instock")
+	@RequestMapping(value="item/instock",method=RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult instock(Long ids){
+	public TaotaoResult instock(@RequestParam(value="ids") List<Long> ids){
 		return tbitemser.instock(ids);
 	}
 	//上架商品
-	@RequestMapping("item/reshelf")
+	@RequestMapping(value="item/reshelf",method=RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult reshelf(Long ids){
+	public TaotaoResult reshelf(@RequestParam(value="ids") List<Long> ids){
 		return tbitemser.reshelf(ids);
 	}
+
 	//内容管理的编辑功能
 	@RequestMapping("content/edit")
 	@ResponseBody

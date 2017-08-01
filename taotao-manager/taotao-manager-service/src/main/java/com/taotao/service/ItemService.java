@@ -1,5 +1,7 @@
 package com.taotao.service;
 
+import java.util.List;
+
 import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.pojo.TbItem;
@@ -20,7 +22,7 @@ public interface ItemService {
 
 	TaotaoResult update(TbItem po, String des, String itemparam);
 
-	TaotaoResult instock(Long ids);
+	TaotaoResult instock(List<Long> ids);
 
-	TaotaoResult reshelf(Long ids);
+	TaotaoResult reshelf(List<Long> ids);
 }
