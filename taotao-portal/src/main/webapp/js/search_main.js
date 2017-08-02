@@ -125,7 +125,7 @@ SEARCH.util = {htmlspecialchars: function(a, b) {
                 f = f.parents("a");
                 g = f.attr("href")
             }
-            if (g && g != "javascript:;") {
+            if (g && g != "#") {
                 window.location.href = d.filtUrl(g, a, b);
                 return false
             }
@@ -335,12 +335,12 @@ GS.init = function() {
     }
     var c = "";
     for (var b = 0, a = this.collocation[3].length; b < a; b++) {
-        c += '<div><a href="javascript:;" onclick="GS.click(this)" title="' + this.collocation[3][b] + '">' + this.collocation[3][b] + "</a></div>"
+        c += '<div><a href="#" onclick="GS.click(this)" title="' + this.collocation[3][b] + '">' + this.collocation[3][b] + "</a></div>"
     }
     this.obj.find("dl:eq(0) dd").html(c);
     c = "";
     for (var b = 0, a = this.collocation[2].length; b < a; b++) {
-        c += '<div><a href="javascript:;" onclick="GS.click(this)" title="' + this.collocation[2][b] + '">' + this.collocation[2][b] + "</a></div>"
+        c += '<div><a href="#" onclick="GS.click(this)" title="' + this.collocation[2][b] + '">' + this.collocation[2][b] + "</a></div>"
     }
     this.obj.find("dl:eq(1) dd").html(c);
     this.obj.children("a").bind("mouseenter", function() {
@@ -377,7 +377,7 @@ GS.html = function(a, c) {
         } else {
             g = ""
         }
-        e += '<div><a class="' + g + '" href="javascript:;" onclick="GS.click(this)" title="' + a[d] + '">' + a[d] + "</a></div>"
+        e += '<div><a class="' + g + '" href="#" onclick="GS.click(this)" title="' + a[d] + '">' + a[d] + "</a></div>"
     }
     h.find("dd").html(e)
 };
@@ -743,7 +743,7 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
             return function() {
             }
         }
-        var n = '<div data-widget="tabs" class="m JD-stock" id="JD-stock"><div class="mt">    <ul class="tab">        <li data-index="0" data-widget="tab-item" class="curr"><a href="javascript:;" class="hover"><em>请选择</em><i></i></a></li>        <li data-index="1" data-widget="tab-item" style="display:none;"><a href="javascript:;" class=""><em>请选择</em><i></i></a></li>        <li data-index="2" data-widget="tab-item" style="display:none;"><a href="javascript:;" class=""><em>请选择</em><i></i></a></li>        <li data-index="3" data-widget="tab-item" style="display:none;"><a href="javascript:;" class=""><em>请选择</em><i></i></a></li>    </ul>    <div class="stock-line"></div></div><div class="mc" data-area="0" data-widget="tab-content">    <ul class="area-list">       <li><a href="javascript:;" data-value="1">北京</a></li><li><a href="javascript:;" data-value="2">上海</a></li><li><a href="javascript:;" data-value="3">天津</a></li><li><a href="javascript:;" data-value="4">重庆</a></li><li><a href="javascript:;" data-value="5">河北</a></li><li><a href="javascript:;" data-value="6">山西</a></li><li><a href="javascript:;" data-value="7">河南</a></li><li><a href="javascript:;" data-value="8">辽宁</a></li><li><a href="javascript:;" data-value="9">吉林</a></li><li><a href="javascript:;" data-value="10">黑龙江</a></li><li><a href="javascript:;" data-value="11">内蒙古</a></li><li><a href="javascript:;" data-value="12">江苏</a></li><li><a href="javascript:;" data-value="13">山东</a></li><li><a href="javascript:;" data-value="14">安徽</a></li><li><a href="javascript:;" data-value="15">浙江</a></li><li><a href="javascript:;" data-value="16">福建</a></li><li><a href="javascript:;" data-value="17">湖北</a></li><li><a href="javascript:;" data-value="18">湖南</a></li><li><a href="javascript:;" data-value="19">广东</a></li><li><a href="javascript:;" data-value="20">广西</a></li><li><a href="javascript:;" data-value="21">江西</a></li><li><a href="javascript:;" data-value="22">四川</a></li><li><a href="javascript:;" data-value="23">海南</a></li><li><a href="javascript:;" data-value="24">贵州</a></li><li><a href="javascript:;" data-value="25">云南</a></li><li><a href="javascript:;" data-value="26">西藏</a></li><li><a href="javascript:;" data-value="27">陕西</a></li><li><a href="javascript:;" data-value="28">甘肃</a></li><li><a href="javascript:;" data-value="29">青海</a></li><li><a href="javascript:;" data-value="30">宁夏</a></li><li><a href="javascript:;" data-value="31">新疆</a></li><li><a href="javascript:;" data-value="32">台湾</a></li><li><a href="javascript:;" data-value="42">香港</a></li><li><a href="javascript:;" data-value="43">澳门</a></li><li><a href="javascript:;" data-value="84">钓鱼岛</a></li>    </ul></div><div class="mc" data-area="1" data-widget="tab-content"></div><div class="mc" data-area="2" data-widget="tab-content"></div><div class="mc" data-area="3" data-widget="tab-content"></div></div><span class="clr"></span>';
+        var n = '<div data-widget="tabs" class="m JD-stock" id="JD-stock"><div class="mt">    <ul class="tab">        <li data-index="0" data-widget="tab-item" class="curr"><a href="#" class="hover"><em>请选择</em><i></i></a></li>        <li data-index="1" data-widget="tab-item" style="display:none;"><a href="#" class=""><em>请选择</em><i></i></a></li>        <li data-index="2" data-widget="tab-item" style="display:none;"><a href="#" class=""><em>请选择</em><i></i></a></li>        <li data-index="3" data-widget="tab-item" style="display:none;"><a href="#" class=""><em>请选择</em><i></i></a></li>    </ul>    <div class="stock-line"></div></div><div class="mc" data-area="0" data-widget="tab-content">    <ul class="area-list">       <li><a href="#" data-value="1">北京</a></li><li><a href="#" data-value="2">上海</a></li><li><a href="#" data-value="3">天津</a></li><li><a href="#" data-value="4">重庆</a></li><li><a href="#" data-value="5">河北</a></li><li><a href="#" data-value="6">山西</a></li><li><a href="#" data-value="7">河南</a></li><li><a href="#" data-value="8">辽宁</a></li><li><a href="#" data-value="9">吉林</a></li><li><a href="#" data-value="10">黑龙江</a></li><li><a href="#" data-value="11">内蒙古</a></li><li><a href="#" data-value="12">江苏</a></li><li><a href="#" data-value="13">山东</a></li><li><a href="#" data-value="14">安徽</a></li><li><a href="#" data-value="15">浙江</a></li><li><a href="#" data-value="16">福建</a></li><li><a href="#" data-value="17">湖北</a></li><li><a href="#" data-value="18">湖南</a></li><li><a href="#" data-value="19">广东</a></li><li><a href="#" data-value="20">广西</a></li><li><a href="#" data-value="21">江西</a></li><li><a href="#" data-value="22">四川</a></li><li><a href="#" data-value="23">海南</a></li><li><a href="#" data-value="24">贵州</a></li><li><a href="#" data-value="25">云南</a></li><li><a href="#" data-value="26">西藏</a></li><li><a href="#" data-value="27">陕西</a></li><li><a href="#" data-value="28">甘肃</a></li><li><a href="#" data-value="29">青海</a></li><li><a href="#" data-value="30">宁夏</a></li><li><a href="#" data-value="31">新疆</a></li><li><a href="#" data-value="32">台湾</a></li><li><a href="#" data-value="42">香港</a></li><li><a href="#" data-value="43">澳门</a></li><li><a href="#" data-value="84">钓鱼岛</a></li>    </ul></div><div class="mc" data-area="1" data-widget="tab-content"></div><div class="mc" data-area="2" data-widget="tab-content"></div><div class="mc" data-area="3" data-widget="tab-content"></div></div><span class="clr"></span>';
         b.children(".content").html(n);
         var g = b.find("li[data-widget]"), d = b.find('div[data-widget="tab-content"]'), h = 3, c = [], f = true, i;
         function j(q) {
@@ -775,7 +775,7 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
                         k.json_city[String(o)] = s;
                         l(s, r, p, q)
                     };
-                    e.getJSONP("http://d.jd.com/area/get?fid=" + o + "&callback=getAreaList_callback")
+                    e.getJSONP("#")
                 } else {
                     l([], r, p, q)
                 }
@@ -827,12 +827,12 @@ SEARCH.bind_events = {iplocation: (function(e, k) {
             for (var p in y) {
                 y[p] = y[p].replace(" ", "");
                 if (y[p].length > 12) {
-                    B += "<li class='longer-area'><a href='javascript:;' data-value='" + p + "'>" + y[p] + "</a></li>"
+                    B += "<li class='longer-area'><a href='#' data-value='" + p + "'>" + y[p] + "</a></li>"
                 } else {
                     if (y[p].length > 5) {
-                        r += "<li class='long-area'><a href='javascript:;' data-value='" + p + "'>" + y[p] + "</a></li>"
+                        r += "<li class='long-area'><a href='#' data-value='" + p + "'>" + y[p] + "</a></li>"
                     } else {
-                        w += "<li><a href='javascript:;' data-value='" + p + "'>" + y[p] + "</a></li>"
+                        w += "<li><a href='#' data-value='" + p + "'>" + y[p] + "</a></li>"
                     }
                 }
             }
@@ -1225,12 +1225,12 @@ SEARCH.top_page_html = function(d, e, g, b) {
     if (d <= 1) {
         c += '<span class="prev-disabled">上一页<b></b></span>'
     } else {
-        c += '<a onclick="SEARCH.page(' + a + ')" href="javascript:;" class="prev" title="使用方向键左键也可翻到上一页哦！">上一页<b></b></a>'
+        c += '<a onclick="SEARCH.page(' + a + ')" href="#" class="prev" title="使用方向键左键也可翻到上一页哦！">上一页<b></b></a>'
     }
     if (d >= e) {
         c += '<span class="next-disabled">下一页<b></b></span>'
     } else {
-        c += '<a onclick="SEARCH.page(' + f + ')" href="javascript:;" class="next" title="使用方向键右键也可翻到下一页哦！">下一页<b></b></a>'
+        c += '<a onclick="SEARCH.page(' + f + ')" href="#" class="next" title="使用方向键右键也可翻到下一页哦！">下一页<b></b></a>'
     }
     $("#top_pagi").html(c);
     $("#res_count").html(g)
@@ -1256,11 +1256,11 @@ SEARCH.bottom_page_html = function(e, k, j) {
     if (e <= 1) {
         f += '<span class="prev-disabled">上一页<b></b></span>'
     } else {
-        f += '<a onclick="SEARCH.page(' + d + ', true)" href="javascript:;" class="prev" title="使用方向键左键也可翻到上一页哦！">上一页<b></b></a>'
+        f += '<a onclick="SEARCH.page(' + d + ', true)" href="#" class="prev" title="使用方向键左键也可翻到上一页哦！">上一页<b></b></a>'
     }
     for (var h = 1; h <= k; h++) {
         if (h <= 2 || h >= a && h <= b) {
-            f += h == e ? '<a href="javascript:;" class="current">' + h + "</a>" : '<a onclick="SEARCH.page(' + (j ? 2 * h - 1 : h) + ', true)" href="javascript:;">' + h + "</a>"
+            f += h == e ? '<a href="#" class="current">' + h + "</a>" : '<a onclick="SEARCH.page(' + (j ? 2 * h - 1 : h) + ', true)" href="#">' + h + "</a>"
         } else {
             if (h < a) {
                 f += '<span class="text">…</span>';
@@ -1276,9 +1276,9 @@ SEARCH.bottom_page_html = function(e, k, j) {
     if (e >= k) {
         f += '<span class="next-disabled">下一页<b></b></span>'
     } else {
-        f += '<a onclick="SEARCH.page(' + g + ', true)" href="javascript:;" class="next" title="使用方向键右键也可翻到下一页哦！">下一页<b></b></a>'
+        f += '<a onclick="SEARCH.page(' + g + ', true)" href="#" class="next" title="使用方向键右键也可翻到下一页哦！">下一页<b></b></a>'
     }
-    f += '<span class="page-skip"><em>&nbsp;&nbsp;共' + k + '页&nbsp;&nbsp;&nbsp;&nbsp;到第</em><input class="jumpto" type="text" value="' + e + '" onkeydown="javascript:if(event.keyCode==13){SEARCH.page_jump(' + k + "," + j + ');return false;}"/><em>页</em><a class="btn-skipsearch" value="确定" onclick="SEARCH.page_jump(' + k + "," + j + ')" href="javascript:;">确定</a></span>';
+    f += '<span class="page-skip"><em>&nbsp;&nbsp;共' + k + '页&nbsp;&nbsp;&nbsp;&nbsp;到第</em><input class="jumpto" type="text" value="' + e + '" onkeydown="javascript:if(event.keyCode==13){SEARCH.page_jump(' + k + "," + j + ');return false;}"/><em>页</em><a class="btn-skipsearch" value="确定" onclick="SEARCH.page_jump(' + k + "," + j + ')" href="#">确定</a></span>';
     $("#pagin-btm").html(f)
 };
 SEARCH.page = function(b, a) {
@@ -1307,7 +1307,7 @@ SEARCH.sort_html = function(c) {
     if (c == "0") {
         c = ""
     }
-    var b = "<dt>排序：</dt>", a = '<dd class="#class#"><a href="javascript:;" onclick="#click#">#name#</a><b></b></dd>', d = class_name = "";
+    var b = "<dt>排序：</dt>", a = '<dd class="#class#"><a href="#" onclick="#click#">#name#</a><b></b></dd>', d = class_name = "";
     if (c == "") {
         class_name = "curr"
     } else {
@@ -1701,15 +1701,15 @@ function surveyShow() {
 function ebook_download(b, a) {
     $.login({modal: true,complete: function(c) {
             if (c != null && c.IsAuthenticated != null && c.IsAuthenticated) {
-                var d = "http://gw.e.jd.com/downrecord/downrecord_insert.action?ebookId=" + b + "&key=" + a + "&callback=?";
+                var d = "#" ;
                 $.getJSON(d, function(f) {
                     if (f.code == 1) {
-                        var e = confirm("如您已安装京东LeBook客户端，请点击“确定”自动启动客户端\n如您尚未安装京东LeBook客户端，请点击“取消”将引导您免费安装客户端");
+                        var e = confirm("如您已安装淘淘LeBook客户端，请点击“确定”自动启动客户端\n如您尚未安装淘淘LeBook客户端，请点击“取消”将引导您免费安装客户端");
                         if (e == true) {
                             window.location = "LEBK:///Bought"
                         } else {
-                            if (confirm('如果您没有安装LeBook客户端，请点击"确定"按钮到京东网站下载\n如果您不需要安装，请点击"取消"按钮')) {
-                                window.open("http://e.jd.com/ebook/lebook_pc.aspx")
+                            if (confirm('如果您没有安装LeBook客户端，请点击"确定"按钮到淘淘网站下载\n如果您不需要安装，请点击"取消"按钮')) {
+                                window.open("#")
                             }
                         }
                         return
@@ -1721,7 +1721,7 @@ function ebook_download(b, a) {
         }})
 }
 SEARCH.get_digital_price = function(b, a) {
-    $.getJSON("http://p.3.cn/prices/mgets?skuids=" + b + "&area=" + a.replace(/-/g, "_") + "&type=1&callback=?", function(c) {
+    $.getJSON("#" + "&type=1&callback=?", function(c) {
         SEARCH.set_digital_price_data(c)
     })
 };
@@ -1990,9 +1990,9 @@ SEARCH.set_ware_stock_data = function(n) {
             case 34:
                 m && m.html('<span class="st34">' + e + "无货</span>");
                 if (p.attr("data-disable-notice") == "1") {
-                    p.before('<a href="javascript:;" class="btn-buy disabled">加入购物车</a>').remove()
+                    p.before('<a href="#" class="btn-buy disabled">加入购物车</a>').remove()
                 } else {
-                    p.attr({href: "javascript:;","class": d,"data-type": 2,"data-sku": o,id: "store" + o}).removeAttr("target").html("<b></b>到货通知");
+                    p.attr({href: "#","class": d,"data-type": 2,"data-sku": o,id: "store" + o}).removeAttr("target").html("<b></b>到货通知");
                     var f = SEARCH.util.get_ware_type(o);
                     (f == "book" || f == "mvd") && g.push(o)
                 }
@@ -2015,7 +2015,7 @@ SEARCH.set_ware_stock_data = function(n) {
             return
         }
         for (var l in q) {
-            q[l] == 0 && $("#store" + l).before('<a href="javascript:;" class="btn-buy disabled">加入购物车</a>').remove()
+            q[l] == 0 && $("#store" + l).before('<a href="#" class="btn-buy disabled">加入购物车</a>').remove()
         }
     })
 };
@@ -2099,13 +2099,13 @@ SEARCH.get_baby_info = function() {
             }
         }
         if (l.status == "now") {
-            j.find(".tc-info").html('您的宝宝<strong>即将出生</strong>啦！<a href="javascript:;" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
+            j.find(".tc-info").html('您的宝宝<strong>即将出生</strong>啦！<a href="#" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
         } else {
             if (l.status == "past") {
-                j.find(".tc-info").html("您的宝宝已经<strong>" + l.tip + '</strong>啦！<a href="javascript:;" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
+                j.find(".tc-info").html("您的宝宝已经<strong>" + l.tip + '</strong>啦！<a href="#" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
             } else {
                 if (l.status == "future") {
-                    j.find(".tc-info").html("您的宝宝即将在<strong>" + l.tip + '</strong>后出生！<a href="javascript:;" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
+                    j.find(".tc-info").html("您的宝宝即将在<strong>" + l.tip + '</strong>后出生！<a href="#" class="tci-change" clstag="search|keycount|search|updatebabyinfo">[ 修改信息 ]</a>')
                 }
             }
         }
@@ -2247,10 +2247,10 @@ SEARCH.get_adv_info = function(f, d, c, b, e) {
                 var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="160" height="160" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><em></em><strong class="J_{#sku_id#}"></strong></div></li>'
             } else {
                 if (b == "_1") {
-                    var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="160" height="160" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></div><div class="p-scroll"><a href="javascript:;" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="javascript:;" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></li></ul></div><a href="javascript:;" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
+                    var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="160" height="160" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></div><div class="p-scroll"><a href="#" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="#" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s160x160_{#image_url#}"></a></li></ul></div><a href="#" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
                 } else {
                     if (b == "_2") {
-                        var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="220" height="220" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s220x220_{#image_url#}"></a></div><div class="p-scroll"><a href="javascript:;" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="javascript:;" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s220x220_{#image_url#}"></a></li></ul></div><a href="javascript:;" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
+                        var l = '<li><div class="p-img"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');"><img width="220" height="220" data-img="1" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s220x220_{#image_url#}"></a></div><div class="p-scroll"><a href="#" class="p-scroll-btn p-scroll-prev">&lt;</a><div class="p-scroll-wrap"><ul><li><a href="#" class="curr"><img data-img="1" width="27" height="27" data-skuid="{#sku_id#}" data-lazyload="http://img1{#index#}.360buyimg.com/cms/s220x220_{#image_url#}"></a></li></ul></div><a href="#" class="p-scroll-btn p-scroll-next">&gt;</a></div><div class="p-name"><a href="{#click_url#}" target="_blank" onclick="searchlog(1,{#sku_id#},{#pos#},82);JA.tracker.adclick(\'{#monitor_url#}\');">{#ad_title#}</a></div><div class="p-price"><strong class="J_{#sku_id#}"></strong></div><div class="extra"><span class="star"><span class="star-white"><span id="adv-star-{#sku_id#}" class="star-yellow h">&nbsp;</span></span></span><a id="adv-comment-{#sku_id#}">已有人评价</a></div></li>'
                     }
                 }
             }

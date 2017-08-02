@@ -1351,9 +1351,9 @@ var category = {OBJ: $("#_JD_ALLSORT"),
     }};
 !function() {
     pageConfig.FN_ImgError(document), $("img[data-lazyload]").Jlazyload({type: "image",placeholderClass: "err-product"}), category.FN_Init(), document.getElementById("shortcut") ? $("#shortcut .menu").Jdropdown({delay: 50}) : ($("#biz-service").Jdropdown({delay: 50}, function() {
-        $.ajax({url: "http://www.jd.com/hotwords.aspx?position=new-index-002",dataType: "script",scriptCharset: "gb2312",cache: !0})
+        $.ajax({url: "#",dataType: "script",scriptCharset: "gb2312",cache: !0})
     }), $("#site-nav").Jdropdown({delay: 50}, function() {
-        $.ajax({url: "http://www.jd.com/hotwords.aspx?position=new-index-003",dataType: "script",scriptCharset: "gb2312",cache: !0})
+        $.ajax({url: "#",dataType: "script",scriptCharset: "gb2312",cache: !0})
     })), document.getElementById("navitems") ? $("#navitems li").Jdropdown() : $("#navitems-2013 li").Jdropdown()
     		
 //    		$.ajax({url: ("https:" == document.location.protocol ? "https://" : "http://") + "passport." + pageConfig.FN_getDomain() + "/new/helloService.ashx?m=ls",

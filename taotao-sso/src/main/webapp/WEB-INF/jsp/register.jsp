@@ -14,7 +14,7 @@
 <body>
 <div class="w" id="logo">
     <div>
-    	<a href="http://www.taotao.com">
+    	<a href="#">
     		<img src="/images/taotao-logo.gif" alt="淘淘商城" width="170" height="60"/>
     	</a> <b></b>
     </div>
@@ -27,7 +27,7 @@
         </ul>
         <div class="extra">
         <span>我已经注册，现在就&nbsp;
-        	<a href="/user/showLogin" class="flk13">登录</a>
+        	<a href="/page/login" class="flk13">登录</a>
         </span>
         </div>
     </div>
