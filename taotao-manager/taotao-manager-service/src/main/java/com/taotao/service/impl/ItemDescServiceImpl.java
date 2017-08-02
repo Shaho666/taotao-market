@@ -23,7 +23,7 @@ public class ItemDescServiceImpl implements ItemDescService {
 		com.taotao.pojo.TbItemDescExample.Criteria criteria = example.createCriteria();
 		criteria.andItemIdEqualTo(itemId);
 		
-		List<TbItemDesc> list = itemDescMapper.selectByExample(example);
+		List<TbItemDesc> list = itemDescMapper.selectByExampleWithBLOBs(example);
 		
 		TbItemDesc itemDesc = null;
 		if(list != null && list.size() > 0) {
