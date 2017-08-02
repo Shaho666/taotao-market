@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,9 @@ public class LogoutController {
 	@Autowired
 	private LogoutService logoutService;
 	
+	@Value("${HOME_PAGE_URL}")
+	private String HOME_PAGE_URL;
+	
 	@RequestMapping("/user/logout")
 	@ResponseBody
 	public TaotaoResult logout(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
@@ -26,7 +30,7 @@ public class LogoutController {
 		try {
 			
 			logoutService.logout(request, response, session);
-			response.sendRedirect("http://localhost:8082");
+			response.sendRedirect(HOME_PAGE_URL);
 			
 			return TaotaoResult.ok();
 		} catch (Exception e) {

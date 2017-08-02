@@ -6,5 +6,6 @@ public interface CartService {
 
 	TaotaoResult addCartToRedis(Long userId, String cartOfJson);
 	TaotaoResult getCartFromRedis(Long userId);
+	TaotaoResult deleteFromRedis(Long userId, Long itemId);
 	
 }

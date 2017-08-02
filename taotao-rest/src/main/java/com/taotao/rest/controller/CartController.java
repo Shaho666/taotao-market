@@ -56,4 +56,16 @@ public class CartController {
 
 	}
 
+	@RequestMapping("deleteRedis/{userId}/{itemId}")
+	@ResponseBody
+	public TaotaoResult deleteFromRedis(@PathVariable Long userId, @PathVariable Long itemId) {
+		try {
+			TaotaoResult result = cartService.deleteFromRedis(userId, itemId);
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+		}
+	}
+	
 }

@@ -64,7 +64,12 @@ public class AppTest {
 		list.add(1);
 		list.add(2);
 		
-		System.out.println(list.indexOf(0));
+		List<Integer> another = new ArrayList<Integer>();
+		another.add(9999);
+		another.add(8888);
+		
+		list.addAll(another);
+		System.out.println(list);
 		
 	}
 	

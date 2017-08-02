@@ -73,13 +73,39 @@ public class CartServiceImpl implements CartService {
 		
 		try {
 			String json = jedisClient.get(REDIS_CART_KEY + ":" + userId);
-			System.out.println(json);
+			
 			return TaotaoResult.ok(json);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
 		}
 		
+	}
+
+	@Override
+	public TaotaoResult deleteFromRedis(Long userId, Long itemId) {
+		try {
+			
+			TaotaoResult result = getCartFromRedis(userId);
+			String json = (String) result.getData();
+			
+			List<CartItem> list = JsonUtils.jsonToList(json, CartItem.class);
+			for (CartItem cartItem : list) {
+				if(cartItem.getId().equals(itemId)) {
+					list.remove(cartItem);
+					break;
+				}
+			}
+			
+			String cartOfJson = JsonUtils.objectToJson(list);
+			
+			jedisClient.set(REDIS_CART_KEY + ":" + userId, cartOfJson);
+			jedisClient.expire(REDIS_CART_KEY + ":" + userId, REDIS_CART_TIME_EXPIRE);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return TaotaoResult.ok();
 	}
 
 }

@@ -1,5 +1,7 @@
 package com.taotao.rest.pojo;
 
+import java.util.Date;
+
 public class CartItem {
 
 	private Long id;
@@ -7,6 +9,7 @@ public class CartItem {
 	private Long price;
 	private Integer num;
 	private String image;
+	private Date date;
 	
 	public Long getId() {
 		return id;
@@ -38,7 +41,12 @@ public class CartItem {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

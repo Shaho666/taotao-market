@@ -8,6 +8,9 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- 注解驱动 -->
 	<mvc:annotation-driven />
+	
+	<context:property-placeholder location="classpath:properties/*.properties" />
+	
 	<!-- 视图解析器 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />

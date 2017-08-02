@@ -1,9 +1,8 @@
 package com.taotao.portal.service.impl;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +21,6 @@ import com.taotao.pojo.TbUser;
 import com.taotao.portal.pojo.CartItem;
 import com.taotao.portal.service.CartService;
 import com.taotao.portal.service.ItemService;
-import com.taotao.portal.service.UserService;
-
 /**
  * 购物车服务
  */
@@ -31,24 +28,32 @@ import com.taotao.portal.service.UserService;
 @Service
 public class CartServiceImpl implements CartService {
 
-	// @Value("${SERVICE_BASE_URL}")
-	// private String SERVICE_BASE_URL;
-	//
-	// @Value("${ITEM_BASE_URL}")
-	// private String ITEM_BASE_URL;
+	/* /cart/redisCart/ */
+	@Value("${REDIS_CART_URL}")
+	private String REDIS_CART_URL;
 
+	/* http://localhost:8081/rest */
+	@Value("${REST_BASE_URL}")
+	private String REST_BASE_URL;
+
+	/* 432000 */
 	@Value("${CAT_COOKIE_EXPIRE}")
 	private Integer CAT_COOKIE_EXPIRE;
-	
+
+	/* REDIS_SESSION */
 	@Value("${REDIS_SESSION_KEY}")
 	private String REDIS_SESSION_KEY;
+
+	/* /cart/redis/ */
+	@Value("${REDIS_CART_ITEM_ADD}")
+	private String REDIS_CART_ITEM_ADD;
+	
+	@Value("${REDIS_CART_ITEM_DELETE}")
+	private String REDIS_CART_ITEM_DELETE;
 
 	@Autowired
 	private ItemService itemService;
 
-	@Autowired
-	private UserService userService;
-	
 	@Override
 	public TaotaoResult addCartItem(long itemId, Integer num, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -62,6 +67,7 @@ public class CartServiceImpl implements CartService {
 			if (item.getId().longValue() == itemId) {
 				haveFlag = true;
 				item.setNum(item.getNum() + num);
+				item.setDate(new Date());
 				break;
 			}
 		}
@@ -75,6 +81,7 @@ public class CartServiceImpl implements CartService {
 			cartItem.setNum(num);
 			cartItem.setTitle(tbItem.getTitle());
 			cartItem.setPrice(tbItem.getPrice());
+			cartItem.setDate(new Date());
 
 			if (StringUtils.isNoneBlank(tbItem.getImage())) {
 				String image = tbItem.getImage();
@@ -87,13 +94,19 @@ public class CartServiceImpl implements CartService {
 
 		CookieUtils.setCookie(request, response, "TT_CART", JsonUtils.objectToJson(list), CAT_COOKIE_EXPIRE, true);
 
-		TbUser user = userService.getUserByToken(request, response);
-		if(user != null) {
-			Map<String, String> cartMapTable = new Hashtable<String, String>();
-			cartMapTable.put(user.getId().toString(), JsonUtils.objectToJson(list));
-		}
-		
 		return TaotaoResult.ok();
+	}
+
+	public List<CartItem> getCartFromRedis(TbUser user) {
+
+		String cartString = null;
+
+		if (user != null) {
+			String jsonList = HttpClientUtil.doGet(REST_BASE_URL + REDIS_CART_URL + user.getId());
+			cartString = (String) TaotaoResult.format(jsonList).getData();
+		}
+
+		return JsonUtils.jsonToList(cartString, CartItem.class);
 	}
 
 	/**
@@ -101,24 +114,19 @@ public class CartServiceImpl implements CartService {
 	 */
 	public List<CartItem> getItemListFromCart(HttpServletRequest request, HttpServletResponse response) {
 		// 从cookie中取商品列表
-		
-		TbUser user = userService.getUserByToken(request, response);
-		System.out.println(this.getClass() + ":" + user);
+
+		List<CartItem> cartItems = new ArrayList<CartItem>();
+
+		//TbUser user = userService.getUserByToken(request, response);
 		String cartString = CookieUtils.getCookieValue(request, "TT_CART", true);
-		System.out.println(this.getClass() + ":" + cartString);
-		if(cartString == null || cartString.isEmpty() || "".equals(cartString)) {
-			String jsonList = HttpClientUtil.doGet("http://localhost:8081/rest/cart/redisCart/" + user.getId());
-			//cartString = (String) TaotaoResult.format(jsonList).getData();
+
+		if (cartString != null) {
+			cartItems.addAll(JsonUtils.jsonToList(cartString, CartItem.class));
 		}
-		
-		System.out.println(this.getClass() + ":" + cartString);
+
 		try {
-			List<CartItem> list = JsonUtils.jsonToList(cartString, CartItem.class);
-			System.out.println(this.getClass() + ":" + list);
-			if (list == null) {
-				return new ArrayList<CartItem>();
-			}
-			return list;
+
+			return cartItems;
 		} catch (Exception e) {
 			return new ArrayList<CartItem>();
 		}
@@ -187,14 +195,14 @@ public class CartServiceImpl implements CartService {
 
 		for (CartItem cartItem : itemList) {
 			if (cartItem.getId() == itemId) {
-				
+
 				itemList.remove(cartItem);
 				break;
 			}
 		}
 
 		CookieUtils.setCookie(request, response, "TT_CART", JsonUtils.objectToJson(itemList), CAT_COOKIE_EXPIRE, true);
-		
+
 		return TaotaoResult.ok();
 	}
 
