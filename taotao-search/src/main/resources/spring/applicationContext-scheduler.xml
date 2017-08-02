@@ -8,17 +8,30 @@
 	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 
-	<context:component-scan
-		base-package="com.taotao.search.service,com.taotao.search.dao"></context:component-scan>
+	<bean id="testMethodQuartz" class="com.taotao.search.scheduler.SearchScheduler" />
 
-	<bean id="httpSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
-		<constructor-arg name="baseURL"
-			value="http://60.205.223.195:8084/solr" />
+	<!-- 配置MethodInvokingJobDetailFactoryBean -->
+	<bean id="testTaskMethod"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="testMethodQuartz" />
+		<property name="targetMethod" value="execute" />
 	</bean>
 
-     <!-- <bean id="cloudSolrServer" class="org.apache.solr.client.solrj.impl.CloudSolrServer">
-        <constructor-arg name="zkHost" value="60.205.223.195:2181,60.205.223.195:2182,60.205.223.195:2183"/>
-        <property name="defaultCollection" value="collection2"></property>
-    </bean> -->
+	<!-- 配置定时表达式 -->
+	<bean id="testTaskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="testTaskMethod" />
+		<!-- 每一分钟执行一次 -->
+		<property name="cronExpression" value="0/0 0/5 * * * ?" />
+	</bean>
+
+	<!-- 配置调度工厂 -->
+	<bean id="testSchedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="testTaskTrigger" />
+			</list>
+		</property>
+	</bean>
 
 </beans>

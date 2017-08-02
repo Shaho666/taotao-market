@@ -12,5 +12,6 @@
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven/>
     <!-- 视图解析器 -->
+    <context:property-placeholder location="classpath:properties/*.properties" />
 	
 </beans>        
