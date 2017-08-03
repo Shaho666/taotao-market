@@ -1,5 +1,6 @@
 package com.taotao.portal.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.taotao.pojo.TbOrder;
+import com.taotao.pojo.TbOrderItem;
+import com.taotao.pojo.TbOrderShipping;
 import com.taotao.pojo.TbUser;
 import com.taotao.portal.pojo.CartItem;
+import com.taotao.portal.pojo.Order;
 import com.taotao.portal.pojo.OrderInfo;
+import com.taotao.portal.pojo.OrderItem;
 import com.taotao.portal.service.CartService;
 import com.taotao.portal.service.OrderService;
 
@@ -62,4 +68,48 @@ public class OrderController {
 		return "success";
 		
 	}
+	
+	@RequestMapping("/orderList")
+	public String showOrderList(Model model) {
+		
+		List<TbOrder> orderList = orderService.getOrderList(40L);
+		
+		List<Order> orders = new ArrayList<Order>();
+		
+		for (TbOrder tbOrder : orderList) {
+			
+			String orderId = tbOrder.getOrderId();
+			
+			List<TbOrderItem> orderItemList = orderService.getOrderItemList(orderId);
+			List<TbOrderShipping> orderShipping = orderService.getOrderShipping(orderId);
+			
+			List<OrderItem> orderItems = new ArrayList<OrderItem>();
+			
+			for (TbOrderItem tbOrderItem : orderItemList) {
+				
+				OrderItem orderItem = new OrderItem();
+				orderItem.setOrderId(tbOrderItem.getOrderId());
+				orderItem.setTottalPrice(tbOrderItem.getTotalFee());
+				orderItem.setReceiverName(orderShipping.get(0).getReceiverName());
+				orderItem.setCreated(tbOrder.getCreateTime());
+				orderItem.setStatus(tbOrder.getStatus());
+				orderItem.setItemId(tbOrderItem.getItemId());
+				orderItem.setImage(tbOrderItem.getPicPath());
+				
+				orderItems.add(orderItem);
+			}
+			
+			Order order = new Order();
+			order.setOrderId(orderId);
+			order.setOrderItems(orderItems);
+			
+			orders.add(order);
+			
+		}
+		
+		model.addAttribute("orders", orders);
+		
+		return "my-orders";
+	}
+	
 }

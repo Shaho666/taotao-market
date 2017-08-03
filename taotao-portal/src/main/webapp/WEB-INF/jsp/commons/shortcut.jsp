@@ -8,7 +8,7 @@
 			<li class="fore1" id="loginbar" clstag="homepage|keycount|home2013|01b">您好！欢迎来到淘淘！<a href="http://localhost:8084/page/login">[登录]</a>&nbsp;<a href="http://localhost:8084/page/register">[免费注册]</a></li>
 			<li class="fore2 ld" clstag="homepage|keycount|home2013|01c">
 				<s></s>
-				<a href="#" rel="nofollow">我的订单</a>
+				<a href="/order/orderList.html" rel="nofollow">我的订单</a>
 			</li>
 			<li class="fore2-1 ld" id="jd-vip">
 				<s></s>

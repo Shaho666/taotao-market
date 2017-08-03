@@ -175,13 +175,14 @@
 	$("#orderState").val(4096);
 </script>    					    						            					    								    												<tbody id="tb-3965995220">
     
-    <tbody id="tb-2538292730">
+    <c:forEach items="${orders }" var="order">
+            <tbody id="tb-2538292730">
     
         <tr class="tr-th">
             <td colspan="6">
                 <span class="tcol1">
                     订单编号:
-                    <a name="orderIdLinks" id="idUrl2538292730" target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_num">2538292730</a>
+                    <a name="orderIdLinks" id="idUrl2538292730" target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_num">${order.orderId }</a>
                                         
 		    		                </span>
 
@@ -193,28 +194,27 @@
                     </span>
                             </td>
         </tr>
-        <tr id="track2538292730" oty="0,1,70" class="tr-td">
+        <c:forEach items="${order.orderItems }" var="item">
+            <tr id="track2538292730" oty="0,1,70" class="tr-td">
             <td>
             	<div class="img-list">
-            		        		  		<a href="http://item.jd.com/1113410.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="TP-LINK TL-WR885N 450M无线路由器（白）" width="50" height="50" src="/images/rBEhV1NXYLYIAAAAAADGO8-wV-UAAMfdgNi-BAAAMZT367.jpg" class="err-product">
+            		        		  		<a href="/item/${item.itemId }.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
+        					<img title="" width="50" height="50" src="${item.image }" class="err-product">
         		  		</a>
-        		           		  		<a href="http://item.jd.com/1222567.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="RND 扁平网线 超高速六类（CAT.6)  超薄扁平  线长为1米5 炫白色" width="50" height="50" src="/images/541fdd63Nab1b3c63.jpg" class="err-product">
-        		  		</a>
+        		           		  		
         		               	</div>
             </td>
-            <td><div class="u-name">张志君</div></td>
+            <td><div class="u-name">${item.receiverName }</div></td>
         	<td>
-        		￥108.00<br>
+        		${item.tottalPrice / 100 }<br>
         		货到付款<br>
         	            	</td>
             <td>
-                <span class="ftx-03">2014-10-20 <br> 22:30:49</span>
+                <span class="ftx-03"> <br> <c:out value="${item.created }"></c:out></span>
                 <input type="hidden" id="datasubmit-2538292730" value="2014-10-20 22:30:49">
             </td>
             
-            <td><span class="ftx-03">已完成</span></td>
+            <td><span class="ftx-03"><c:if test="${item.status == 1 }">已完成</c:if><c:if test="${item.status == 0 }">未完成</c:if></span></td>
             
             <td id="operate2538292730" class="order-doi" width="100">
         	  
@@ -224,262 +224,9 @@
             
             </td>
         </tr>
+        </c:forEach>
     </tbody>
-    
-    <tbody id="tb-2538292730">
-    
-        <tr class="tr-th">
-            <td colspan="6">
-                <span class="tcol1">
-                    订单编号:
-                    <a name="orderIdLinks" id="idUrl2538292730" target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_num">2538292730</a>
-                                        
-		    		                </span>
-
-                                    <span class="tcol2">
-                        淘淘
-                    </span>
-                    <span class="tcol3">
-                        <a class="btn-im" onclick="getPamsForChat()" href="#none" title="联系客服"></a>
-                    </span>
-                            </td>
-        </tr>
-        <tr id="track2538292730" oty="0,1,70" class="tr-td">
-            <td>
-            	<div class="img-list">
-            		        		  		<a href="http://item.jd.com/1113410.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="TP-LINK TL-WR885N 450M无线路由器（白）" width="50" height="50" src="/images/rBEhV1NXYLYIAAAAAADGO8-wV-UAAMfdgNi-BAAAMZT367.jpg" class="err-product">
-        		  		</a>
-        		           		  		<a href="http://item.jd.com/1222567.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="RND 扁平网线 超高速六类（CAT.6)  超薄扁平  线长为1米5 炫白色" width="50" height="50" src="/images/541fdd63Nab1b3c63.jpg" class="err-product">
-        		  		</a>
-        		               	</div>
-            </td>
-            <td><div class="u-name">张志君</div></td>
-        	<td>
-        		￥108.00<br>
-        		货到付款<br>
-        	            	</td>
-            <td>
-                <span class="ftx-03">2014-10-20 <br> 22:30:49</span>
-                <input type="hidden" id="datasubmit-2538292730" value="2014-10-20 22:30:49">
-            </td>
-            
-            <td><span class="ftx-03">已完成</span></td>
-            
-            <td id="operate2538292730" class="order-doi" width="100">
-        	  
-            <span id="pay-button-2538292730" state=""></span>
-            <a target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_check">查看</a><span id="order_comment"></span><span class="pop-recycle-a">|<a href="javascript:void(0)" clstag="click|keycount|orderinfo|order_del" onclick="ensureMoveOrderToRecycle(2538292730,'397FF574E089D5409E6CC8EF67129D65');">删除</a></span><span id="doi2538292730"><br><a href="http://club.jd.com/JdVote/TradeComment.aspx?ruleid=2538292730&amp;ot=0&amp;payid=1&amp;shipmentid=70" target="_blank" clstag="click|keycount|orderinfo|order_comment">评价晒单</a><br></span><a href="http://myjd.jd.com/repair/ordersearchlist.action?searchString=2538292730" target="_blank" clstag="click|keycount|orderinfo|order_repair">申请返修/退换货</a>
-            <a class="btn-again" clstag="click|keycount|orderlist|buy" href="http://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=1113410,1222567&amp;nums=1,1&amp;rid=1419846299535" target="_blank">还要买</a>
-            
-            </td>
-        </tr>
-    </tbody>
-    
-    <tbody id="tb-2538292730">
-    
-        <tr class="tr-th">
-            <td colspan="6">
-                <span class="tcol1">
-                    订单编号:
-                    <a name="orderIdLinks" id="idUrl2538292730" target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_num">2538292730</a>
-                                        
-		    		                </span>
-
-                                    <span class="tcol2">
-                        淘淘
-                    </span>
-                    <span class="tcol3">
-                        <a class="btn-im" onclick="getPamsForChat()" href="#none" title="联系客服"></a>
-                    </span>
-                            </td>
-        </tr>
-        <tr id="track2538292730" oty="0,1,70" class="tr-td">
-            <td>
-            	<div class="img-list">
-            		        		  		<a href="http://item.jd.com/1113410.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="TP-LINK TL-WR885N 450M无线路由器（白）" width="50" height="50" src="/images/rBEhV1NXYLYIAAAAAADGO8-wV-UAAMfdgNi-BAAAMZT367.jpg" class="err-product">
-        		  		</a>
-        		           		  		<a href="http://item.jd.com/1222567.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="RND 扁平网线 超高速六类（CAT.6)  超薄扁平  线长为1米5 炫白色" width="50" height="50" src="/images/541fdd63Nab1b3c63.jpg" class="err-product">
-        		  		</a>
-        		               	</div>
-            </td>
-            <td><div class="u-name">张志君</div></td>
-        	<td>
-        		￥108.00<br>
-        		货到付款<br>
-        	            	</td>
-            <td>
-                <span class="ftx-03">2014-10-20 <br> 22:30:49</span>
-                <input type="hidden" id="datasubmit-2538292730" value="2014-10-20 22:30:49">
-            </td>
-            
-            <td><span class="ftx-03">已完成</span></td>
-            
-            <td id="operate2538292730" class="order-doi" width="100">
-        	  
-            <span id="pay-button-2538292730" state=""></span>
-            <a target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_check">查看</a><span id="order_comment"></span><span class="pop-recycle-a">|<a href="javascript:void(0)" clstag="click|keycount|orderinfo|order_del" onclick="ensureMoveOrderToRecycle(2538292730,'397FF574E089D5409E6CC8EF67129D65');">删除</a></span><span id="doi2538292730"><br><a href="http://club.jd.com/JdVote/TradeComment.aspx?ruleid=2538292730&amp;ot=0&amp;payid=1&amp;shipmentid=70" target="_blank" clstag="click|keycount|orderinfo|order_comment">评价晒单</a><br></span><a href="http://myjd.jd.com/repair/ordersearchlist.action?searchString=2538292730" target="_blank" clstag="click|keycount|orderinfo|order_repair">申请返修/退换货</a>
-            <a class="btn-again" clstag="click|keycount|orderlist|buy" href="http://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=1113410,1222567&amp;nums=1,1&amp;rid=1419846299535" target="_blank">还要买</a>
-            
-            </td>
-        </tr>
-    </tbody>
-    
-    <tbody id="tb-2538292730">
-    
-        <tr class="tr-th">
-            <td colspan="6">
-                <span class="tcol1">
-                    订单编号:
-                    <a name="orderIdLinks" id="idUrl2538292730" target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_num">2538292730</a>
-                                        
-		    		                </span>
-
-                                    <span class="tcol2">
-                        淘淘
-                    </span>
-                    <span class="tcol3">
-                        <a class="btn-im" onclick="getPamsForChat()" href="#none" title="联系客服"></a>
-                    </span>
-                            </td>
-        </tr>
-        <tr id="track2538292730" oty="0,1,70" class="tr-td">
-            <td>
-            	<div class="img-list">
-            		        		  		<a href="http://item.jd.com/1113410.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="TP-LINK TL-WR885N 450M无线路由器（白）" width="50" height="50" src="/images/rBEhV1NXYLYIAAAAAADGO8-wV-UAAMfdgNi-BAAAMZT367.jpg" class="err-product">
-        		  		</a>
-        		           		  		<a href="http://item.jd.com/1222567.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="RND 扁平网线 超高速六类（CAT.6)  超薄扁平  线长为1米5 炫白色" width="50" height="50" src="/images/541fdd63Nab1b3c63.jpg" class="err-product">
-        		  		</a>
-        		               	</div>
-            </td>
-            <td><div class="u-name">张志君</div></td>
-        	<td>
-        		￥108.00<br>
-        		货到付款<br>
-        	            	</td>
-            <td>
-                <span class="ftx-03">2014-10-20 <br> 22:30:49</span>
-                <input type="hidden" id="datasubmit-2538292730" value="2014-10-20 22:30:49">
-            </td>
-            
-            <td><span class="ftx-03">已完成</span></td>
-            
-            <td id="operate2538292730" class="order-doi" width="100">
-        	  
-            <span id="pay-button-2538292730" state=""></span>
-            <a target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_check">查看</a><span id="order_comment"></span><span class="pop-recycle-a">|<a href="javascript:void(0)" clstag="click|keycount|orderinfo|order_del" onclick="ensureMoveOrderToRecycle(2538292730,'397FF574E089D5409E6CC8EF67129D65');">删除</a></span><span id="doi2538292730"><br><a href="http://club.jd.com/JdVote/TradeComment.aspx?ruleid=2538292730&amp;ot=0&amp;payid=1&amp;shipmentid=70" target="_blank" clstag="click|keycount|orderinfo|order_comment">评价晒单</a><br></span><a href="http://myjd.jd.com/repair/ordersearchlist.action?searchString=2538292730" target="_blank" clstag="click|keycount|orderinfo|order_repair">申请返修/退换货</a>
-            <a class="btn-again" clstag="click|keycount|orderlist|buy" href="http://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=1113410,1222567&amp;nums=1,1&amp;rid=1419846299535" target="_blank">还要买</a>
-            
-            </td>
-        </tr>
-    </tbody>
-    
-    <tbody id="tb-2538292730">
-    
-        <tr class="tr-th">
-            <td colspan="6">
-                <span class="tcol1">
-                    订单编号:
-                    <a name="orderIdLinks" id="idUrl2538292730" target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_num">2538292730</a>
-                                        
-		    		                </span>
-
-                                    <span class="tcol2">
-                        淘淘
-                    </span>
-                    <span class="tcol3">
-                        <a class="btn-im" onclick="getPamsForChat()" href="#none" title="联系客服"></a>
-                    </span>
-                            </td>
-        </tr>
-        <tr id="track2538292730" oty="0,1,70" class="tr-td">
-            <td>
-            	<div class="img-list">
-            		        		  		<a href="http://item.jd.com/1113410.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="TP-LINK TL-WR885N 450M无线路由器（白）" width="50" height="50" src="/images/rBEhV1NXYLYIAAAAAADGO8-wV-UAAMfdgNi-BAAAMZT367.jpg" class="err-product">
-        		  		</a>
-        		           		  		<a href="http://item.jd.com/1222567.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="RND 扁平网线 超高速六类（CAT.6)  超薄扁平  线长为1米5 炫白色" width="50" height="50" src="/images/541fdd63Nab1b3c63.jpg" class="err-product">
-        		  		</a>
-        		               	</div>
-            </td>
-            <td><div class="u-name">张志君</div></td>
-        	<td>
-        		￥108.00<br>
-        		货到付款<br>
-        	            	</td>
-            <td>
-                <span class="ftx-03">2014-10-20 <br> 22:30:49</span>
-                <input type="hidden" id="datasubmit-2538292730" value="2014-10-20 22:30:49">
-            </td>
-            
-            <td><span class="ftx-03">已完成</span></td>
-            
-            <td id="operate2538292730" class="order-doi" width="100">
-        	  
-            <span id="pay-button-2538292730" state=""></span>
-            <a target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_check">查看</a><span id="order_comment"></span><span class="pop-recycle-a">|<a href="javascript:void(0)" clstag="click|keycount|orderinfo|order_del" onclick="ensureMoveOrderToRecycle(2538292730,'397FF574E089D5409E6CC8EF67129D65');">删除</a></span><span id="doi2538292730"><br><a href="http://club.jd.com/JdVote/TradeComment.aspx?ruleid=2538292730&amp;ot=0&amp;payid=1&amp;shipmentid=70" target="_blank" clstag="click|keycount|orderinfo|order_comment">评价晒单</a><br></span><a href="http://myjd.jd.com/repair/ordersearchlist.action?searchString=2538292730" target="_blank" clstag="click|keycount|orderinfo|order_repair">申请返修/退换货</a>
-            <a class="btn-again" clstag="click|keycount|orderlist|buy" href="http://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=1113410,1222567&amp;nums=1,1&amp;rid=1419846299535" target="_blank">还要买</a>
-            
-            </td>
-        </tr>
-    </tbody>
-    
-    <tbody id="tb-2538292730">
-    
-        <tr class="tr-th">
-            <td colspan="6">
-                <span class="tcol1">
-                    订单编号:
-                    <a name="orderIdLinks" id="idUrl2538292730" target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_num">2538292730</a>
-                                        
-		    		                </span>
-
-                                    <span class="tcol2">
-                        淘淘
-                    </span>
-                    <span class="tcol3">
-                        <a class="btn-im" onclick="getPamsForChat()" href="#none" title="联系客服"></a>
-                    </span>
-                            </td>
-        </tr>
-        <tr id="track2538292730" oty="0,1,70" class="tr-td">
-            <td>
-            	<div class="img-list">
-            		        		  		<a href="http://item.jd.com/1113410.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="TP-LINK TL-WR885N 450M无线路由器（白）" width="50" height="50" src="/images/rBEhV1NXYLYIAAAAAADGO8-wV-UAAMfdgNi-BAAAMZT367.jpg" class="err-product">
-        		  		</a>
-        		           		  		<a href="http://item.jd.com/1222567.html" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
-        					<img title="RND 扁平网线 超高速六类（CAT.6)  超薄扁平  线长为1米5 炫白色" width="50" height="50" src="/images/541fdd63Nab1b3c63.jpg" class="err-product">
-        		  		</a>
-        		               	</div>
-            </td>
-            <td><div class="u-name">张志君</div></td>
-        	<td>
-        		￥108.00<br>
-        		货到付款<br>
-        	            	</td>
-            <td>
-                <span class="ftx-03">2014-10-20 <br> 22:30:49</span>
-                <input type="hidden" id="datasubmit-2538292730" value="2014-10-20 22:30:49">
-            </td>
-            
-            <td><span class="ftx-03">已完成</span></td>
-            
-            <td id="operate2538292730" class="order-doi" width="100">
-        	  
-            <span id="pay-button-2538292730" state=""></span>
-            <a target="_blank" href="http://order.jd.com/normal/item.action?orderid=2538292730&amp;PassKey=769448C6BA99F1ADA8244BAE7BC60580" clstag="click|keycount|orderinfo|order_check">查看</a><span id="order_comment"></span><span class="pop-recycle-a">|<a href="javascript:void(0)" clstag="click|keycount|orderinfo|order_del" onclick="ensureMoveOrderToRecycle(2538292730,'397FF574E089D5409E6CC8EF67129D65');">删除</a></span><span id="doi2538292730"><br><a href="http://club.jd.com/JdVote/TradeComment.aspx?ruleid=2538292730&amp;ot=0&amp;payid=1&amp;shipmentid=70" target="_blank" clstag="click|keycount|orderinfo|order_comment">评价晒单</a><br></span><a href="http://myjd.jd.com/repair/ordersearchlist.action?searchString=2538292730" target="_blank" clstag="click|keycount|orderinfo|order_repair">申请返修/退换货</a>
-            <a class="btn-again" clstag="click|keycount|orderlist|buy" href="http://cart.jd.com/cart/dynamic/reBuyForOrderCenter.action?wids=1113410,1222567&amp;nums=1,1&amp;rid=1419846299535" target="_blank">还要买</a>
-            
-            </td>
-        </tr>
-    </tbody>
+    </c:forEach>
     								                                    						            					    								    												<tbody id="tb-3122336930">
     
        

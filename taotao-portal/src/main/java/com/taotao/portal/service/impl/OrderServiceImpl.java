@@ -1,5 +1,7 @@
 package com.taotao.portal.service.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,6 +12,9 @@ import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.common.utils.CookieUtils;
 import com.taotao.common.utils.HttpClientUtil;
 import com.taotao.common.utils.JsonUtils;
+import com.taotao.pojo.TbOrder;
+import com.taotao.pojo.TbOrderItem;
+import com.taotao.pojo.TbOrderShipping;
 import com.taotao.portal.pojo.OrderInfo;
 import com.taotao.portal.service.OrderService;
 
@@ -26,6 +31,18 @@ public class OrderServiceImpl implements OrderService {
 	/**order/create*/
 	@Value("${ORDER_CREATE_URL}")
 	private String ORDER_CREATE_URL;
+	
+	@Value("${REST_BASE_URL}")
+	private String REST_BASE_URL;
+	
+	@Value("${ORDER_URL}")
+	private String ORDER_URL;
+	
+	@Value("${ORDER_ITEM_URL}")
+	private String ORDER_ITEM_URL;
+	
+	@Value("${ORDER_SHIPPING_URL}")
+	private String ORDER_SHIPPING_URL;
 	
 //	
 //	@Override
@@ -45,13 +62,47 @@ public class OrderServiceImpl implements OrderService {
 		String string = HttpClientUtil.doPostJson(ORDER_BASE_URL + ORDER_CREATE_URL, json);
 		//把string转换成TaotaoResult对象
 		TaotaoResult result = TaotaoResult.format(string);
-		System.out.println(this.getClass() + ":" + result);
-		System.out.println(this.getClass() + ":" + result.getData());
 		String orderId = result.getData().toString();
 		
 		CookieUtils.deleteCookie(request, response, "TT_CART");
 		
 		return orderId;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TbOrder> getOrderList(Long userId) {
+		
+		String json = HttpClientUtil.doGet(REST_BASE_URL + ORDER_URL + userId);
+		TaotaoResult result = TaotaoResult.formatToList(json, TbOrder.class);
+
+		List<TbOrder> list = (List<TbOrder>) result.getData();
+		
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TbOrderItem> getOrderItemList(String orderId) {
+		
+		String json = HttpClientUtil.doGet(REST_BASE_URL + ORDER_ITEM_URL + orderId);
+		TaotaoResult result = TaotaoResult.formatToList(json, TbOrderItem.class);
+		
+		List<TbOrderItem> list = (List<TbOrderItem>) result.getData();
+		
+		return list;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TbOrderShipping> getOrderShipping(String orderId) {
+		
+		String json = HttpClientUtil.doGet(REST_BASE_URL + ORDER_SHIPPING_URL + orderId);
+		TaotaoResult result = TaotaoResult.formatToList(json, TbOrderShipping.class);
+		
+		List<TbOrderShipping> list = (List<TbOrderShipping>) result.getData();
+		
+		return list;
 	}
 
 }
